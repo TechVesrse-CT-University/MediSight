@@ -1,4 +1,6 @@
 
+import { fontFamily } from 'tailwindcss/defaultTheme'
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,10 +27,10 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
-				},
+                primary: {
+                    DEFAULT: '#4facfe', // gradientStart
+                    foreground: '#00f2fe', // gradientEnd
+                },
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
@@ -71,6 +73,10 @@ export default {
                     dark: '#1E293B'
                 }
 			},
+			fontFamily: {
+                sans: ['Poppins', ...fontFamily.sans],
+                
+            },
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
