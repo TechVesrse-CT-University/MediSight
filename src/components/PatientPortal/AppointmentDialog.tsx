@@ -109,6 +109,11 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
   const handleRequestAppointment = () => {
     setShowDoctorsList(true);
     fetchDoctors();
+    toast({
+      title: "Loading",
+      description: "Loading the doctors...",
+      duration: 500,
+    });
   };
 
   const handleSelectDoctor = (doctor: DoctorType) => {
@@ -149,10 +154,10 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
-          <DialogTitle>Appointments</DialogTitle>
-          <DialogDescription>
-            View your upcoming appointments and request new ones.
+        <DialogHeader className="border-b border-neon-blue">
+          <DialogTitle className="text-neon-pink">Appointments</DialogTitle>
+          <DialogDescription className="text-neon-pink">
+            View your upcoming appointments and request new ones
           </DialogDescription>
         </DialogHeader>
 
@@ -161,12 +166,12 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
             <div className="space-y-4">
               <h3 className="text-sm font-medium">Upcoming Appointments</h3>
               
-              {appointments.filter(a => a.status === "accepted").length > 0 ? (
-                <div className="space-y-3">
+               {appointments.filter(a => a.status === "accepted").length > 0 ? (
+                 <div className="space-y-3">
                   {appointments
                     .filter(a => a.status === "accepted")
                     .map(appointment => (
-                      <Card key={appointment.id}>
+                       <Card key={appointment.id} className="border-neon-blue">
                         <CardContent className="p-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
@@ -189,7 +194,7 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
                     ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-muted-foreground">
+                <div className="text-center py-8 text-muted-foreground text-neon-pink">
                   No upcoming appointments
                 </div>
               )}
@@ -200,7 +205,7 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
                   {appointments
                     .filter(a => a.status === "pending")
                     .map(appointment => (
-                      <Card key={appointment.id}>
+                       <Card key={appointment.id} className="border-neon-blue">
                         <CardContent className="p-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
@@ -221,13 +226,13 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
                     ))}
                 </div>
               ) : (
-                <div className="text-center py-4 text-muted-foreground">
+                <div className="text-center py-4 text-muted-foreground text-neon-pink">
                   No pending requests
                 </div>
               )}
             </div>
             
-            <DialogFooter>
+            <DialogFooter className="border-t border-neon-blue">
               <Button onClick={handleRequestAppointment}>
                 Request Appointment
               </Button>
@@ -236,13 +241,12 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
         ) : (
           <>
             <div className="space-y-4">
-              <h3 className="text-sm font-medium">Select a Doctor</h3>
+              <h3 className="text-sm font-medium text-neon-pink">Select a Doctor</h3>
               
               {doctors.length > 0 ? (
                 <div className="space-y-3 max-h-[300px] overflow-y-auto">
                   {doctors.map(doctor => (
                     <Card 
-                      key={doctor.id} 
                       className={`cursor-pointer ${selectedDoctor?.id === doctor.id ? 'ring-2 ring-primary' : ''}`}
                       onClick={() => handleSelectDoctor(doctor)}
                     >
@@ -262,17 +266,17 @@ const AppointmentDialog = ({ open, onOpenChange }: AppointmentDialogProps) => {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-muted-foreground">
+                <div className="text-center py-8 text-muted-foreground text-neon-pink">
                   Loading doctors...
                 </div>
               )}
             </div>
             
-            <DialogFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => {
+            <DialogFooter className="flex justify-between border-t border-neon-blue">
+              <Button variant="outline" className="text-neon-pink border-neon-blue" onClick={() => {
                 setShowDoctorsList(false);
                 setSelectedDoctor(null);
-              }}>
+              }} >
                 Cancel
               </Button>
               <Button 

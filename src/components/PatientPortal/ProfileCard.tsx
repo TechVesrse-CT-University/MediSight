@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
@@ -19,10 +19,9 @@ import { db } from "@/lib/firebase";
 
 const ProfileCard = () => {
   const { user } = useAuth();
-  const { toast } = useToast();
-  const [isEditing, setIsEditing] = useState(false);
-  const [editDialog, setEditDialog] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();  const [editDialog, setEditDialog] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);  
+  
   const [profileData, setProfileData] = useState({
     displayName: "",
     phoneNumber: "",
@@ -119,11 +118,11 @@ const ProfileCard = () => {
   };
 
   return (
-    <div className="flex items-center gap-3">
-      <Avatar className="h-10 w-10 cursor-pointer" onClick={handleEditProfile}>
+    <div className="flex items-center gap-3 text-neon-pink">
+      <Avatar className="h-10 w-10 cursor-pointer border-neon-blue border" onClick={handleEditProfile}>
         <AvatarImage src={user?.photoURL || ""} />
         <AvatarFallback>{user?.displayName?.charAt(0) || user?.email?.charAt(0) || "U"}</AvatarFallback>
-      </Avatar>
+      </Avatar>      
       <div>
         <div className="font-medium">{user?.displayName || user?.email?.split("@")[0] || "User"}</div>
         <div className="text-xs text-muted-foreground">Patient</div>
@@ -131,7 +130,7 @@ const ProfileCard = () => {
 
       {/* Edit Profile Dialog */}
       <Dialog open={editDialog} onOpenChange={setEditDialog}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] bg-dark-background text-neon-pink">
           <DialogHeader>
             <DialogTitle>Edit Profile</DialogTitle>
           </DialogHeader>
@@ -141,13 +140,13 @@ const ProfileCard = () => {
             </div>
           ) : (
             <div className="grid gap-4 py-4">
-              <div className="flex flex-col items-center mb-4">
-                <Avatar className="h-20 w-20 mb-4">
+              <div className="flex flex-col items-center mb-4 border-neon-blue border">
+                <Avatar className="h-20 w-20 mb-4 ">
                   <AvatarImage src={user?.photoURL || ""} />
                   <AvatarFallback>{profileData.displayName?.charAt(0) || user?.email?.charAt(0) || "U"}</AvatarFallback>
                 </Avatar>
-                <Button size="sm" variant="outline">Change Photo</Button>
-              </div>
+                <Button size="sm" variant="outline" className="border-neon-blue">Change Photo</Button>
+              </div>              
               
               <div className="grid grid-cols-4 items-center gap-4">
                 <label className="text-right text-sm" htmlFor="displayName">Name</label>
@@ -155,6 +154,7 @@ const ProfileCard = () => {
                   id="displayName"
                   value={profileData.displayName}
                   onChange={(e) => setProfileData({...profileData, displayName: e.target.value})}
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
@@ -164,6 +164,7 @@ const ProfileCard = () => {
                   id="email"
                   value={user?.email || ""}
                   disabled
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
@@ -173,6 +174,7 @@ const ProfileCard = () => {
                   id="phone"
                   value={profileData.phoneNumber}
                   onChange={(e) => setProfileData({...profileData, phoneNumber: e.target.value})}
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
@@ -182,6 +184,7 @@ const ProfileCard = () => {
                   id="address"
                   value={profileData.address}
                   onChange={(e) => setProfileData({...profileData, address: e.target.value})}
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
@@ -192,6 +195,7 @@ const ProfileCard = () => {
                   type="date"
                   value={profileData.dateOfBirth}
                   onChange={(e) => setProfileData({...profileData, dateOfBirth: e.target.value})}
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
@@ -201,6 +205,7 @@ const ProfileCard = () => {
                   id="bloodType"
                   value={profileData.bloodType}
                   onChange={(e) => setProfileData({...profileData, bloodType: e.target.value})}
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
@@ -210,6 +215,7 @@ const ProfileCard = () => {
                   id="allergies"
                   value={profileData.allergies}
                   onChange={(e) => setProfileData({...profileData, allergies: e.target.value})}
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
@@ -219,12 +225,13 @@ const ProfileCard = () => {
                   id="emergency"
                   value={profileData.emergencyContact}
                   onChange={(e) => setProfileData({...profileData, emergencyContact: e.target.value})}
+                  style={{color:"#f0f"}}
                   className="col-span-3"
                 />
               </div>
             </div>
           )}
-          <DialogFooter>
+          <DialogFooter className="border-t border-neon-blue">
             <Button variant="outline" onClick={() => setEditDialog(false)}>Cancel</Button>
             <Button onClick={handleSaveProfile} disabled={isLoading}>
               {isLoading ? (

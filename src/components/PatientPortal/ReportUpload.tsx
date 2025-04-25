@@ -10,6 +10,7 @@ import { getFileUrl, getPublicSharingUrl } from "@/utils/cloudinary";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
+
 const ReportUpload = () => {
   const { toast } = useToast();
   const { user } = useAuth();
@@ -121,7 +122,7 @@ const ReportUpload = () => {
   };
   
   const handleViewFile = (fileUrl: string, fileName: string) => {
-    const downloadUrl = getFileUrl(fileUrl);
+        const downloadUrl = getFileUrl(fileUrl);
     
     const publicShareUrl = getPublicSharingUrl(fileUrl);
     
@@ -171,13 +172,13 @@ const ReportUpload = () => {
   };
 
   return (
-    <Card className="h-full mb-6">
+    <Card className="h-full mb-6 border-neon-blue text-neon-pink bg-dark-background">
       <CardHeader>
-        <CardTitle className="text-lg font-medium">Upload Medical Reports</CardTitle>
+        <CardTitle className="text-lg font-medium text-neon-pink">Upload Medical Reports</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col space-y-4">
-          {uploadError && (
+            {uploadError && (
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>{uploadError}</AlertDescription>
@@ -215,11 +216,11 @@ const ReportUpload = () => {
 
           {uploadedFiles.length > 0 && (
             <div className="mt-4">
-              <h3 className="font-medium mb-2">Uploaded Files</h3>
-              <ul className="space-y-2">
+              <h3 className="font-medium mb-2 text-neon-pink">Uploaded Files</h3>
+              <ul className="space-y-2 ">
                 {uploadedFiles.map((file, index) => (
-                  <li key={index} className="flex items-center justify-between text-sm p-2 border rounded">
-                    <div className="flex items-center space-x-2">
+                  <li key={index} className="flex items-center justify-between text-sm p-2 border rounded border-neon-blue bg-dark-background">
+                    <div className="flex items-center space-x-2 ">
                       <FileText className="h-4 w-4 text-muted-foreground" />
                       <span>{file.fileName}</span>
                     </div>
@@ -246,7 +247,7 @@ const ReportUpload = () => {
             </div>
           )}
           
-          <Button disabled={isUploading} onClick={() => document.querySelector<HTMLInputElement>('input[type="file"]')?.click()}>
+          <Button className="bg-neon-blue" disabled={isUploading} onClick={() => document.querySelector<HTMLInputElement>('input[type="file"]')?.click()}>
             {isUploading ? "Uploading..." : "Upload Report"}
           </Button>
         </div>

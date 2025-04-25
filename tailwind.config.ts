@@ -27,6 +27,11 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+                'neon-blue': '#0ff',
+                'neon-green': '#0f0',
+                'neon-pink': '#f0f',
+                'neon-purple': '#800080',
+                'dark-background': '#121212',
                 primary: {
                     DEFAULT: '#4facfe', // gradientStart
                     foreground: '#00f2fe', // gradientEnd

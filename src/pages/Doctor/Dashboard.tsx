@@ -158,12 +158,12 @@ const DoctorDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('https://cdn.discordapp.com/attachments/1275127310395379795/1360016256866193408/04_11_2025_X-Design.png?ex=67f99557&is=67f843d7&hm=d0c1ed832c9256e18918613e33819812f3f7cdbe31d39c0846de8628f23c3193&')" }}>
+    <div className="min-h-screen bg-dark-background text-neon-pink">
       {/* Header */}
       <DoctorHeader
         user={user}
         notifications={[]}
-        onSignOut={handleSignOut}
+        onSignOut={handleSignOut} 
         onShowProfileDialog={() => setShowProfileDialog(true)}
         onShowScheduleDialog={() => setShowScheduleDialog(true)}
         onShowAddPatientDialog={() => setShowAddPatientDialog(true)}
@@ -172,8 +172,8 @@ const DoctorDashboard = () => {
         onShowAppointments={() => setShowAppointmentDialog(true)}
       />
 
-      {/* Main content */}
-      <main className="healthcare-container py-6">
+       {/* Main content */}
+      <main className="healthcare-container py-6 bg-dark-background">
         <h1 className="text-2xl font-bold mb-6">Doctor Dashboard</h1>
         
         {/* Patient Reports Viewer */}

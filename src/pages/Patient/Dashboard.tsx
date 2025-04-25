@@ -44,9 +44,9 @@ const PatientDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('https://cdn.discordapp.com/attachments/1275127310395379795/1360016256866193408/04_11_2025_X-Design.png?ex=67f99557&is=67f843d7&hm=d0c1ed832c9256e18918613e33819812f3f7cdbe31d39c0846de8628f23c3193&')" }}>
+    <div className="min-h-screen bg-dark-background">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-dark-background border-b border-neon-blue">
         <div className="healthcare-container py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -71,7 +71,7 @@ const PatientDashboard = () => {
 
       {/* Main content */}
       <main className="healthcare-container py-6">
-        <h1 className="text-2xl font-bold mb-6">Patient Dashboard</h1>
+        <h1 className="text-2xl font-bold mb-6 text-neon-pink">Patient Dashboard</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Report Upload Section */}

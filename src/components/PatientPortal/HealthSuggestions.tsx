@@ -18,7 +18,7 @@ import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { Loader2 } from "lucide-react";
 
-const HealthSuggestions: React.FC = () => {
+const HealthSuggestions = () => {
   const [tips, setTips] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [reports, setReports] = useState<any[]>([]);
@@ -76,7 +76,7 @@ const HealthSuggestions: React.FC = () => {
       const pulseRate = Math.floor(Math.random() * 30) + 65; // 65-95
       
       return {
-        ...report,
+       ...report,
         extractedData: {
           systolicBP,
           diastolicBP,
@@ -128,14 +128,14 @@ const HealthSuggestions: React.FC = () => {
           <h1 class="text-2xl font-bold mb-6">Health Report Analysis</h1>
           
           <div class="bg-white shadow rounded-lg p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Health Metrics Over Time</h2>
+            <h2 class="text-xl font-semibold mb-4 text-neon-pink">Health Metrics Over Time</h2>
             <div class="chart-container">
               <canvas id="healthChart"></canvas>
             </div>
           </div>
           
           <div class="bg-white shadow rounded-lg p-6">
-            <h2 class="text-xl font-semibold mb-4">Health Suggestions</h2>
+            <h2 class="text-xl font-semibold mb-4 text-neon-pink">Health Suggestions</h2>
             ${tips.length === 0 ? 
               '<p class="text-green-600 font-medium">No frequent health issues detected! 🎉</p>' : 
               tips.map(tip => `
@@ -205,14 +205,14 @@ const HealthSuggestions: React.FC = () => {
     reportWindow.document.close();
   };
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>AI Health Analysis</CardTitle>
+ return (
+    <Card className="bg-dark-background border-neon-blue border">
+      <CardHeader className="border-b border-neon-blue">
+        <CardTitle className="text-neon-pink">AI Health Analysis</CardTitle>
       </CardHeader>
       <CardContent>
         {loading ? (
-          <div className="flex justify-center items-center py-8">
+          <div className="flex justify-center items-center py-8 text-neon-pink">
             <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
             <span className="ml-2">Analyzing reports...</span>
           </div>
@@ -239,14 +239,14 @@ const HealthSuggestions: React.FC = () => {
             <div className="space-y-4">
               {tips.length > 0 ? tips.slice(0, 1).map((tip, idx) => (
                 <div key={idx} className="p-3 bg-blue-50 rounded-md border border-blue-100">
-                  <h3 className="font-medium">{tip.label}</h3>
-                  <p className="text-sm mt-1"><strong>Diet:</strong> {tip.diet}</p>
+                  <h3 className="font-medium text-neon-pink">{tip.label}</h3>
+                  <p className="text-sm mt-1 text-neon-pink"><strong>Diet:</strong> {tip.diet}</p>
                 </div>
               )) : (
-                <p className="text-green-600 font-medium">No health issues detected.</p>
+                <p className="text-green-600 font-medium text-neon-pink">No health issues detected.</p>
               )}
               
-              <button
+              <button 
                 onClick={openReportAnalysis}
                 className="w-full py-2 px-4 bg-primary text-white rounded-md text-sm font-medium hover:bg-primary/90"
               >

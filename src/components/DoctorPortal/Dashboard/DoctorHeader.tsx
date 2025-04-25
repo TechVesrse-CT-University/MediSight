@@ -69,7 +69,7 @@ const DoctorHeader = ({
   }, [user]);
 
   return (
-    <header className="bg-white shadow sticky top-0 z-10">
+    <header className="bg-white shadow sticky top-0 z-10 border-b-2 border-neon-blue">
       <div className="healthcare-container py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
